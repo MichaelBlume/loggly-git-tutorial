@@ -1,0 +1,56 @@
+Setting up a new clone from scratch
+
+Major software repos with multiple developers should have many github forks --
+a main repo in the loggly account, and a fork for each developer. If you're
+working on a project and don't have your own fork of it, please click the
+'fork' button at the top of the repo's main page in the loggly profile
+
+(fork.png)
+
+Within your fork, copy down the url given for the repo here:
+
+(url.png)
+
+then, wherever you want to put your clone, run
+
+git clone <that-url>
+
+This may take a bit.
+
+Now your clone can talk to your fork of the repo. But you also want to be able
+to talk to the main loggly fork, if only to get code checked in by your
+collaborators. So go back to the loggly page you forked from, copy the url
+there, and do
+
+(loggly-url.png)
+
+git remote add loggly <loggly-url>
+
+Now run
+
+git remote --verbose
+
+and git will tell you which repos you currently communicate with. It should
+look something like this:
+
+[10:31][mike@mikebook:~/workspace/web/media/js(coffee)]$ git remote --verbose
+loggly  git@github.com:loggly/media.git (fetch)
+loggly  git@github.com:loggly/media.git (push)
+origin  git@github.com:MichaelBlume/media.git (fetch)
+origin  git@github.com:MichaelBlume/media.git (push)
+
+Adjusting an existing clone
+
+If you've already cloned one of your repos, but don't think you're pointing to
+the two forks as above, you can fix that. Grab the two urls, as above, and then
+do
+
+git remote set-url origin <your-url>
+git remote add loggly <loggly-url>
+
+Adding more remotes
+
+Let's say you want to check out some code one of your colleauges has in their
+fork. You can add them like so
+
+git remote add <their-name> <their-repo-url>
