@@ -1,0 +1,26 @@
+To use git, you'll need git (amazing, isn't it?)
+
+I'm assuming a sort of classical setup where you're SSHing from a mac to a VM.
+
+Your VM probably has git and gitk. To use gitk, your mac needs to forward X11
+when it SSHs in. You might want to alias 'ssh' to 'ssh -X' or something. Gitk's
+pretty great, and I'll be using it in this tutorial
+
+If you're working directly on your mac, you might not have gitk. Haven't
+figured out how to fix that yet.
+
+You'll also need an account on github. That's generally pretty straightforward.
+
+To get git on your VM to talk to github, you'll need github to have your public
+key. On your VM, run ssh-keygen. It'll ask you about a passphrase, but (Jordan
+may kill me for saying this) you can ignore that. Unless you're storing a key
+on a laptop, there's no need to encrypt it. It'll ask you to name the key, but
+the default is fine.
+
+Now run
+
+cat ~/.ssh/id_rsa.pub
+
+and you'll get some incomprehensible output. You can go to personal settings on
+github and paste that in, and magically your box will be able to push and pull
+from github.
