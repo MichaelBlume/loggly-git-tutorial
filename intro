@@ -1,0 +1,13 @@
+we use a bunch of git at loggly. We use git to
+
+o Individually manage our code
+o Share our code
+o Manage code review
+o Automate testing
+o Deploy code to production
+
+This tutorial is designed to teach you everything you need in order to
+participate in these workflows. For a broader education about git, check out
+Scott Schacon's Pro Git
+
+http://progit.org/book/
