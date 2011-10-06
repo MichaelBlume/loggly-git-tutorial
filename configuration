@@ -1,0 +1,36 @@
+This tutorial's going to be just a bit opinionated. In my examples, I'm going
+to assume a configuration of git that isn't quite the default one, so if you
+want to be able to just paste in commands from these docs, you should copy some
+of my configs.
+
+The git config command changes your git configuration (not surprisingly).
+Without the --global flag, it'll change the config *only for the repo you're
+in.*  With the --global flag, it'll change it everywhere. You can see your full
+project level git config by running vim .git/config at root level in your
+project. You can see your global git config by running vim ~/.gitconfig
+
+These statements will configure git a bit for you:
+
+git config --global user.name "Your Name" # Make your commits identify their author
+git config --global user.email "you@loggly.com" # If github knows this e-mail,
+                                                # your commits will be
+                                                # associated with your github user
+
+git config --global core.editor [vim|emacs] # pick one. Or something else.
+
+# Pushing
+
+# This will make git *only push the branch you're on* by default.
+git config --global push.default current
+
+# Git Log
+
+# This will let you know where other branches/remotes are when you use git log
+git config --global log.decorate short
+
+# Other nice-to-have stuff
+
+My personal git-config can be found at
+https://github.com/loggly/Infrastructure/blob/master/home/mike/.gitconfig
+
+I'd recommend looking it over
