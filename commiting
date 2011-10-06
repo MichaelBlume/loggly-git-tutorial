@@ -1,0 +1,54 @@
+When getting your code into git, it's usually best to make lots and lots of
+small commits, each of which does a simple and easily-explained thing. As we'll
+see when we get to rewriting history, it's way simpler to smush a bunch of
+small commits together than to split a big one
+
+If you're writing a commit message that explains three separate things, you're
+probably doing it wrong.
+
+Git provides two easy ways to do this.
+
+One is simply to commit as you go. Change. Commit. Change. Commit. If you're in
+this cycle, it's probably fine to use
+
+git commit -a
+
+to commit your changes -- this will just form a new commit incorporating
+everything that's been changed in your working directory. However, before
+running this, you always always always want to run
+
+git diff
+
+so you'll know what you're commiting.
+
+It's really easy to forget to commit for an hour or two and realize that you've
+done a lot of hacking that solved a few different problems. No matter.
+
+What we're going to do is add some of those changes to a staging area, then
+commit, then add more changes, then commit, et cetera. The command you use to
+add things to the staging area is git add
+
+to add an entire file, just use
+
+git add filename
+
+This is what you'll want when you've just created a file that hasn't been
+tracked by git before. Otherwise, the best way to move your changes to the
+staging area is change by change:
+
+git add --patch
+
+This will show you, one at a time, each of the changes you've made to various
+parts of the source code. You can use 'y' or 'n' to decide whether to include
+these in your next commit, 's' to split the change into smaller hunks, or 'e'
+to edit the diff directly.
+
+None of this will change you're working directory at all. Whatever changes you
+answer 'n' to will stay in your files, they just won't be commited on this
+round. Once you've seen everything, you can run
+
+git commit
+
+and commit all the stuff you said 'y' too.  By doing this over many cycles, you
+can cleanly separate lots of disjointed work into many distinct, atomic,
+commits. 
