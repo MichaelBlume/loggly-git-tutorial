@@ -1,0 +1,15 @@
+gitk is pretty much the best thing since sliced bread. Try running 
+
+gitk --all
+
+on any repo you use. You'll get a birds-eye view of all the work going on in
+all branches of that repo, and of what's been merged into what.
+
+Further, *if* you entered gitk with a clean working directory (see 'stashing'),
+you can check out any branch you see in the graph, move that branch to some
+other point in the graph, and cherry-pick other commits onto it. This is really
+cool, because you can basically create a branch anywhere you like, with any
+commits you like, and graphically see the history you're creating as you build
+it.
+
+rebase -i is often faster though
