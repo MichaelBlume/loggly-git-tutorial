@@ -1,0 +1,24 @@
+diffs and cherrypicking
+
+This page is more conceptual than how-to. I will describe how to use the
+cherry-pick command, but honestly, you won't use it that much. I'm mostly
+writing this so you'll know what I mean by 'cherry-picking' so that I can
+mention it on other pages.
+
+The concept of taking and applying diffs is fundamental in git, and shows up
+most directly in the cherry-pick command.
+
+Say another developer has a feature branch with five commits, each of which
+makes a different change to the code. You could merge with that branch, and get
+all of those changes, but let's say you only want one of them, say to make a
+hotfix release. In that case, all you need to do is fetch the branch into your
+repo (see the section on remotes), find out the hash of the commit that makes
+the change you want (use git log, or look it up in github), and then run
+
+git cherry-pick <THAT-HASH>
+
+(incidentally, in git, whenever you use a hash, you can just type the first
+four or five characters of the hash -- you just need enough to make it unique)
+
+this will create a new commit on your branch that introduces the same change,
+the same diff, as the commit on the other branch did.
