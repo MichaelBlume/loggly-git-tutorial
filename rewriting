@@ -1,0 +1,77 @@
+Ok, you've been commiting as you go for a while, and two hours ago, you
+committed a handy little helper function, which now turns out to have a
+terrible namespace error. So you commit a fix, but now your last seven commits
+all represent broken states. That's kind of ugly.
+
+Quick, have you pushed any of this work to the main loggly repo? No? Then you
+can rewrite it.
+
+git rebase --interactive (-i for short) allows you to look at a set of commits you've made over a period
+of time as a series of changes, allows you to reorder them, squash them
+together, or eliminate some entirely. It's insanely powerful, and has a variety
+of uses. Among these, it provides a really easy way to cut feature branches --
+but more on that in a moment.
+
+To invoke git rebase, you need to pick a point in history that's going to be
+stable, a point that's *not* going to be rewritten, so you can rewrite
+everything after that point. Usually this is where you last diverged with the
+loggly repo (which you can find out by running gitk), usually loggly/master
+
+so, let's say I've made three commits since diverging from loggly/master. I
+introduced function foo, I introduced function bar, and then I fixed a bug in
+function foo.
+
+If I run git rebase -i loggly/master, my favorite editor will open, and I will
+see this:
+
+pick b77ddf5 Introduce function foo
+pick e9fbe28 Introduce function bar
+pick 36dc41e D'oh! Fix bug in function foo
+
+# Rebase aef8c0b..36dc41e onto aef8c0b
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+
+See that list at the top? Those are the commits I've made since loggly/master.
+Now, what I wish I'd done is made that fix to function foo right after I
+introduced function foo, so I can reorder them to do that.
+
+pick b77ddf5 Introduce function foo
+pick 36dc41e D'oh! Fix bug in function foo
+pick e9fbe28 Introduce function bar
+
+If I save and quit now, I'll have three commits behind me, but function foo
+will be fixed right after it's introduced.
+
+But really what I actually wish is that I'd gotten function foo right the first
+time, that I'd never committed a buggy version of it. Cool. Let's mark that
+"D'oh" commit as a fixup commit -- let's smush it right down onto the commit
+before it.
+
+pick b77ddf5 Introduce function foo
+fixup 36dc41e D'oh! Fix bug in function foo
+pick e9fbe28 Introduce function bar
+
+If I save and quit *now*, I'll have two commits behind me, and the first will
+introduce a bug-free version of function foo. Nice, eh?
+
+Let's look at the other commands in that comment block. If I change 'pick' to
+reword, then after I save, a new editor will open with the commit message for
+that commit, and I can change it. Let's say you realize you made a typo in a
+commit message, or you forgot to include a ticket number -- reword is your
+friend here.
+
+Squash is just like 'fixup' but instead of just smushing the commit on and
+moving on, it opens up an editor with both commit messages, and lets you write
+up a new, aggregated commit message.
+
