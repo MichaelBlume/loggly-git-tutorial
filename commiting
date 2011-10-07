@@ -11,15 +11,14 @@ Git provides two easy ways to do this.
 One is simply to commit as you go. Change. Commit. Change. Commit. If you're in
 this cycle, it's probably fine to use
 
+git diff
 git commit -a
 
 to commit your changes -- this will just form a new commit incorporating
-everything that's been changed in your working directory. However, before
-running this, you always always always want to run
+everything that's been changed in your working directory. Note that we *always*
+do a diff before commiting all, so you're not committing blind.
 
-git diff
-
-so you'll know what you're commiting.
+---
 
 It's really easy to forget to commit for an hour or two and realize that you've
 done a lot of hacking that solved a few different problems. No matter.
