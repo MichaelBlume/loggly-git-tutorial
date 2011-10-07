@@ -1,0 +1,37 @@
+OK. You've been hacking for the last five hours, you've gone through the
+procedure listed in 'commiting' and you've made 20 nice, atomic commits.
+Commits 1, 5, and 9, taken together, add a new feature to the product, and you
+want to issue a pull request so that someone will merge those commits into
+the main line of development. Awesome.
+
+Let's assume you're on master now. You want to leave master where it is, but
+you want to start a new branch, which descends from loggly's master, and which
+has commits 1, 5, and 9. First, let's make sure we know where loggly's master
+is:
+
+git fetch loggly
+
+Then, let's create a new branch:
+
+git checkout --branch my-awesome-feature
+
+so now master's going to be left where it is, unaffected by anything we're
+about to do. my-awesome-feature is now where master is, and has all 20 commits.
+Let's do something about that:
+
+git rebase -i loggly/master
+
+Now you see all the commits you've made listed. They're all in master too, so
+don't worry about them. Delete all the ones you don't want in
+my-awesome-feature, save, and quit.
+
+(TODO: gitk picture)
+
+now you have a master branch with all the work you've done, and a
+my-awesome-feature branch with just the work you want for *this* pull request.
+Now just do
+
+git push my-awesome-feature
+
+The feature branch will be pushed to your repo, you can go to it in github, and
+open a pull request, and eventually it should be merged into loggly's master. 
