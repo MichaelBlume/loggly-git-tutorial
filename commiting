@@ -42,7 +42,7 @@ parts of the source code. You can use 'y' or 'n' to decide whether to include
 these in your next commit, 's' to split the change into smaller hunks, or 'e'
 to edit the diff directly.
 
-None of this will change you're working directory at all. Whatever changes you
+None of this will change your working directory at all. Whatever changes you
 answer 'n' to will stay in your files, they just won't be commited on this
 round. Once you've seen everything, you can run
 
