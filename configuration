@@ -31,6 +31,6 @@ git config --global log.decorate short
 # Other nice-to-have stuff
 
 My personal git-config can be found at
-https://github.com/loggly/Infrastructure/blob/master/home/mike/.gitconfig
+https://github.com/loggly/homedirs/blob/master/mike/.gitconfig
 
 I'd recommend looking it over
